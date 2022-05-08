@@ -8,6 +8,18 @@ var time_elapsed;
 var interval;
 
 $(document).ready(function() {
+	jQuery.validator.addMethod("strongPass", function(value, element) {
+		return this.optional(element) || /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/.test(value);
+	}, "");
+
+	$("#registerForm").validate();
+	document.getElementById("welcome").style.display = "block";
+	document.getElementById("game").style.display = "none";
+	document.getElementById("about").style.display = "none";
+	document.getElementById("settings").style.display = "none";
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "none";
+
 	context = canvas.getContext("2d");
 	Start();
 });
@@ -30,9 +42,11 @@ function Start() {
 				(i == 3 && j == 5) ||
 				(i == 6 && j == 1) ||
 				(i == 6 && j == 2)
-			) {
+			) 
+			{
 				board[i][j] = 4;
-			} else {
+			} 
+			else {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) {
 					food_remain--;
@@ -69,7 +83,7 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
+	interval = setInterval(UpdatePosition, 150);
 }
 
 function findRandomEmptyCell(board) {

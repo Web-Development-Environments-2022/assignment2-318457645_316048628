@@ -60,7 +60,7 @@
 				<label>Birth Date</label>
 				<input id="birthDate" type="date" name="birthDate" max="1999-12-31"/>
 				<br>
-				<button type="submit" onclick="registerButton()">Register</button>
+				<button class="submit" type="submit" onclick=submitHandler >Register</button>
 			  </form>
 
 		</div>
@@ -116,10 +116,6 @@
 			}  
 		}
 	}
-	jQuery.validator.addMethod("strongPass", function(value, element) {
-        		return this.optional(element) || /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/.test(value);
-        	}, "");
-
 
 	$(function() {
 
@@ -139,14 +135,17 @@
       password: {
         required: true,
 		strongPass: true,
-        minlength: 5
+        minlength: 6
       },
 	  birthDate:{
         required: true,
         }
     },
     messages: {
-      firstName: "Please enter your firstname",
+      firstName:
+	  {
+		required : "Please enter your firstname"
+	},
       lastName: "Please enter your lastname",
       password: {
         required: "Please provide a password",
@@ -155,9 +154,6 @@
       },
       email: "Please enter a valid email address",
 	  birthDate: "Pleasr choose date of birth"
-    },
-    submitHandler: function(form) {
-      form.submit();
     }
   });
 });
