@@ -3,19 +3,183 @@
 	<head>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+		<script src="vendor/jquery/dist/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
 	</head>
 
 	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+		<div id="menu">
+			<ul class="menu-list">
+			<i><img class="menu-icon" src="icon.png" alt="" ></i>
+			<li class="menu-list-item"><a href="#" onclick="changePage('welcome')"> Welcome </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('register')" > Register </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('login')"> Login </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('settings')"> Settings </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('about')"> About </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('game')"> Game </a></li>
+			</ul>
+			</div>
+
+		<div id="welcome">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+
+
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
+
+		<div id="register">
+			<form id="registerForm" action="" method="post">
+				<label>User Name</label>
+				<input id="userName" type="text" name="userName" />
+				<br>
+				<label>Password</label>
+				<input id="password" type="password" name="pass" />
+				<br>
+				<label>First Name</label>
+				<input id="firstName" type="text" name="firstName"/>
+				<br>
+				<label>Last Name</label>
+				<input id="lastName" type="text" name="lastName" />
+				<br>
+				<label>Email</label>
+				<input  id="email" type="email" name="email"/>
+				<br>
+				<label>Birth Date</label>
+				<input id="birthDate" type="date" name="birthDate" max="1999-12-31"/>
+				<br>
+				<button type="submit" onclick="registerButton()">Register</button>
+			  </form>
+
+		</div>
+		<div id="login">
+			<br>
+			<br>
+			<br>
+
+		</div>
+		<div id="settings">
+			<br>
+			<br>
+			<br>
+
+		</div>
+		<div id="about">
+			<br>
+			<br>
+			<br>
+
 		</div>
 		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
+			<div id="score">
+				<label for="lblScore">SCORE:</label>
+				<input id="lblScore" type="text" />
+			</div>
+			<div id="time">
+				<label for="lblTime">TIME:</label>
+				<input id="lblTime" type="text" />
+			</div>
+			<div id="gameBoard">
+				<canvas id="canvas" height="600" width="600"></canvas>
+			</div>
+
 		</div>
+		
 	</body>
 </html>
+
+<script type="text/javascript">
+	
+	var users = []
+	var passwords = []
+	users.push("k");
+	passwords.push("k");
+	function changePage(id){
+		var arr=["welcome","register","login","settings","about","game"]
+		document.getElementById(id).style.display="block";
+		for (var j = 0; j < 6; j++) {
+			if (arr[j] != id) 
+			{
+				document.getElementById(arr[j]).style.display="none";
+			}  
+		}
+	}
+	jQuery.validator.addMethod("strongPass", function(value, element) {
+        		return this.optional(element) || /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/.test(value);
+        	}, "");
+
+
+	$(function() {
+
+  $("form[name='registerForm']").validate({
+    // specify the validation rules
+    rules: {
+      firstName: {
+		  required: true
+		},
+	lastName: {
+			required: true
+		},
+      email: {
+        required: true,
+        email: true
+      },
+      password: {
+        required: true,
+		strongPass: true,
+        minlength: 5
+      },
+	  birthDate:{
+        required: true,
+        }
+    },
+    messages: {
+      firstName: "Please enter your firstname",
+      lastName: "Please enter your lastname",
+      password: {
+        required: "Please provide a password",
+		strongPass: "Please provide at least 1 character and 1 letter",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      email: "Please enter a valid email address",
+	  birthDate: "Pleasr choose date of birth"
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+	function checkIfUserExists()
+	{
+		var newUser = document.forms["registerForm"]["userName"].value;
+		var exists = false;
+		for(i=0; i<users.length; i=i++)
+		{
+			if(users[i]==newUser)
+			{
+				exists=true;
+				break;
+			}
+			if(exists==true)
+			{
+				alert("This userName already exist");
+				return true;
+			}
+			return false;
+		}
+	}
+
+  </script>
