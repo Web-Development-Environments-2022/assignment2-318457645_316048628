@@ -142,3 +142,32 @@ section.section
       padding: 10px 0;
       line-height: 1;
   }
+
+  #imgSettings
+  {
+    width: 25px;
+    height: 25px;
+  }
+
+  #settings{
+    padding-top: 120px;
+    font-size: 25px;
+    color:white;
+  }
+  #settingLabel{
+    text-align: center;
+  }
+  #settingInput{
+    margin-left: 725px;
+    text-align: center; 
+    font-weight: bold;
+		font-size: 20px;
+		margin: 10px;
+  }
+
+
+  button
+  {
+    height:25px;
+    margin-left: 20px;
+  }

@@ -6,13 +6,73 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var start_game = true;
+var music;
+var rightButton ;
+var leftButton ;
+var upButton;
+var downButton;
+var level;
+var ballNum;
+var monstersNum;
+var duration;
+var upDefined = false;
+var downDefined = false;
+var leftDefined = false;
+var rightDefined = false;
+
+
 
 $(document).ready(function() {
-	jQuery.validator.addMethod("strongPass", function(value, element) {
+	jQuery.validator.addMethod("strongPassword", function(value, element) {
 		return this.optional(element) || /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/.test(value);
 	}, "");
+	jQuery.validator.addMethod("onlyLetters", function (value, element) {
+        return this.optional(element) || /^[a-z]+$/i.test(value);
+      }, "");
 
-	$("#registerForm").validate();
+	$("#registerForm").validate({
+		// specify the validation rules
+		rules: {
+		fullName: {
+				required: true,
+				onlyLetters : true
+			},
+		  email: {
+			required: true,
+			email: true
+		  },
+		  password: {
+			required: true,
+			strongPassword: true,
+			minlength: 6
+		  },
+		  birthDate:{
+			required: true,
+			},
+			userName:
+			{
+				required: true,
+			}
+		},
+		messages: {
+			fullName:
+		  {
+			required : "Please enter your firstname",
+			onlyLetters : "Full name need to contain only letters"
+		},	  
+	    password: {
+			required: "Please provide a password",
+			strongPassword: "Please provide at least 1 character and 1 letter",
+			minlength: "Your password must be at least 6 characters long"
+		},
+		email: "Please enter a valid email address",
+		birthDate: "Please choose date of birth",
+		userName : "Please provide user name"
+
+		}
+	  });
+	
 	document.getElementById("welcome").style.display = "block";
 	document.getElementById("game").style.display = "none";
 	document.getElementById("about").style.display = "none";
@@ -21,10 +81,36 @@ $(document).ready(function() {
 	document.getElementById("register").style.display = "none";
 
 	context = canvas.getContext("2d");
-	Start();
+	
 });
 
+function changePage(id){
+	var arr=["welcome","register","login","settings","about","game"]
+	document.getElementById(id).style.display="block";
+	for (var j = 0; j < 6; j++) {
+		if (arr[j] != id) 
+		{
+			document.getElementById(arr[j]).style.display="none";
+		}  
+	}
+}
+
+function playMusic(){
+	music = new Audio('Paamon.mp3');
+	music.play();
+	music.loop = true;
+}
+
+function stopMusic(){
+	if(typeof(music) !== 'undefined')
+	{
+		music.pause();
+	}
+}
+
 function Start() {
+	playMusic();
+	SetSettings();
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -69,20 +155,13 @@ function Start() {
 		food_remain--;
 	}
 	keysDown = {};
-	addEventListener(
-		"keydown",
-		function(e) {
-			keysDown[e.keyCode] = true;
-		},
-		false
-	);
-	addEventListener(
-		"keyup",
-		function(e) {
-			keysDown[e.keyCode] = false;
-		},
-		false
-	);
+      addEventListener("keydown", function (e) {
+        keysDown[e.keyCode] = true;
+      }, false);
+      addEventListener("keyup", function (e) {
+        keysDown[e.keyCode] = false;
+      }, false);
+
 	interval = setInterval(UpdatePosition, 150);
 }
 
@@ -97,16 +176,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[upButton]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[downButton]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[leftButton]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[rightButton]) {
 		return 4;
 	}
 }
@@ -184,3 +263,164 @@ function UpdatePosition() {
 		Draw();
 	}
 }
+
+function ReduceGameLevel()
+{
+	var level = document.getElementById('gameLevel').value;
+	if (level>1)
+	{
+		document.getElementById('gameLevel').value = parseInt(level)-1;
+	}
+}
+function EnlargeGameLevel()
+{
+	var level = document.getElementById('gameLevel').value;
+	if (level<4)
+	{
+		document.getElementById('gameLevel').value = parseInt(level)+1;
+	}
+}
+function ReduceBall()
+{
+	var ballNum = document.getElementById('ballNum').value ;
+	if(ballNum>50)
+	{
+		document.getElementById('ballNum').value = parseInt(ballNum)-1;
+	}
+
+}
+
+function EnlargeBall()
+{
+	var ballNum = document.getElementById('ballNum').value ;
+	if(ballNum<90)
+	{
+		document.getElementById('ballNum').value = parseInt(ballNum)+1;
+	}
+}
+
+function ReduceMonster(){
+	var monster = document.getElementById('monsterNum').value;
+	if (monster>1)
+	{
+		document.getElementById('monsterNum').value = parseInt(monster)-1;
+	}
+}
+
+
+function EnlargeMonster(){
+	var monster = document.getElementById('monsterNum').value;
+	if (monster<4)
+	{
+		document.getElementById('monsterNum').value = parseInt(monster)+1;
+	}
+}
+function ReduceDuration(){
+	var duration = document.getElementById('gameDuration').value;
+	if (duration>60)
+	{
+		document.getElementById('gameDuration').value = parseInt(duration)-1;
+	}
+}
+function EnlargeDuration(){
+	var duration = document.getElementById('gameDuration').value;
+	if (duration<280)
+	{
+		document.getElementById('gameDuration').value = parseInt(duration)+1;
+	}
+}
+function getRndInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+
+function RandomSettings()
+{
+	document.getElementById('gameLevel').value = getRndInteger(1,4);
+	document.getElementById('monsterNum').value = getRndInteger(1,4);
+	document.getElementById('gameDuration').value= getRndInteger(60,280);
+	document.getElementById('ballNum').value = getRndInteger(50,90);
+	document.getElementById('rightBtnSettings').value = 39 ;
+	document.getElementById('leftBtnSettings').value = 37;
+	document.getElementById('downBtnSettings').value = 40;
+	document.getElementById('upBtnSettings').value = 38 ;
+}
+
+function SaveSettings(){
+	level = parseInt(document.getElementById('gameLevel').value);
+	ballNum = parseInt(document.getElementById('ballNum').value);
+	monstersNum = parseInt(document.getElementById('monsterNum').value);
+	duration = parseInt(document.getElementById('gameDuration').value);
+	// upButton = parseInt(document.getElementById('upBtnSettings').value);
+	// downButton =  parseInt(document.getElementById('downBtnSettings').value);
+	// leftButton =  parseInt(document.getElementById('leftBtnSettings').value);
+	// rightButton =  parseInt(document.getElementById('rightBtnSettings').value);
+	setUpBtn();
+	setDownBtn();
+	setLeftBtn();
+	setRightBtn();
+	changePage("game");
+	Start();
+}
+
+function SetSettings(){
+	document.getElementById('gameLevelS').value = level;
+	document.getElementById('ballNumS').value = ballNum;
+	document.getElementById('monstersNumS').value = monstersNum;
+	document.getElementById('gameDurationS').value = duration;
+
+
+}
+
+function setUpBtn(){
+	upDefined = false;
+	addEventListener('keydown',function f(e){
+		if( e!=undefined && !upDefined)
+		{
+			Key = e.key;
+			document.getElementById('upBtnSettings').value = Key;
+			upButton = e.keyCode;
+			upDefined = true;
+		}
+	})
+}
+
+
+function setDownBtn(){
+	downDefined = false;
+	addEventListener('keydown',function f(e){
+		if(  e!=undefined && !downDefined)
+		{
+			Key = e.key;
+			document.getElementById('downBtnSettings').value = Key;
+			downButton = e.keyCode;
+			downDefined = true;
+		}
+	})
+}
+
+function setLeftBtn(){
+	leftDefined = false;
+	addEventListener('keydown',function f(e){
+		if( e!=undefined && !leftDefined)
+		{
+			Key = e.key;
+			document.getElementById('leftBtnSettings').value = Key;
+			leftButton = e.keyCode;
+			leftDefined = true;
+		}
+	})
+}
+
+function setRightBtn(){
+	rightDefined = false;
+	addEventListener('keydown',function f(e){
+		if( e!=undefined && !rightDefined)
+		{
+			Key = e.key;
+			document.getElementById('rightBtnSettings').value = Key;
+			rightButton = e.keyCode;
+			rightDefined = true;
+		}
+	})
+}
+

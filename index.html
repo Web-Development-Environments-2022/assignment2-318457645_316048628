@@ -1,181 +1,257 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-		<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-		<script src="vendor/jquery/dist/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css" />
 
-	</head>
+<head>
 
-	<body>
-		<div id="menu">
-			<ul class="menu-list">
-			<i><img class="menu-icon" src="icon.png" alt="" ></i>
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="vendor/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+
+</head>
+
+<body>
+	<div id="menu">
+		<ul class="menu-list">
+			<i><img class="menu-icon" src="icon.png" alt=""></i>
 			<li class="menu-list-item"><a href="#" onclick="changePage('welcome')"> Welcome </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('register')" > Register </a></li>
+			<li class="menu-list-item"><a href="#" onclick="changePage('register')"> Register </a></li>
 			<li class="menu-list-item"><a href="#" onclick="changePage('login')"> Login </a></li>
 			<li class="menu-list-item"><a href="#" onclick="changePage('settings')"> Settings </a></li>
 			<li class="menu-list-item"><a href="#" onclick="changePage('about')"> About </a></li>
 			<li class="menu-list-item"><a href="#" onclick="changePage('game')"> Game </a></li>
-			</ul>
-			</div>
+		</ul>
+	</div>
 
-		<div id="welcome">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+	<div id="welcome">
+		<br>
+		<br>
 
 
 
+
+	</div>
+
+	<div id="register">
+		<form id="registerForm" action="" method="post">
+			<label>User Name</label>
+			<input type="text" name="userName" />
+			<br>
+			<label>Password</label>
+			<input type="password" name="password" />
+			<br>
+			<label>Full Name</label>
+			<input type="text" name="fullName" />
+			<br>
+			<label>Email</label>
+			<input type="email" name="email" />
+			<br>
+			<label>Birth Date</label>
+			<input type="date" name="birthDate" max="1999-12-31" />
+			<br>
+			<button class="submit" type="submit" onclick="registerButton()">Register</button>
+		</form>
+
+	</div>
+	<div id="login">
+		<form id="LoginForm" enctype="text/plain">
+			<label>User Name</label>
+			<input type="text" name="userName" />
+			<br>
+			<label>Password</label>
+			<input type="password" name="password" />
+			<br>
+			<button type="button">Sign In</button>
+		</form>
+
+	</div>
+	<div id="settings">
+		<table>
+			<tr>
+				<div id="settingLabel">
+					<h3>Game Level</h3>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingInput">
+					<button onclick="ReduceGameLevel()">
+						<img id="imgSettings" src="down.png" width="20" height="20">
+					</button>
+					<input type="text" id="gameLevel" value="1" size="2" disabled>
+					<button onclick="EnlargeGameLevel()">
+						<img id="imgSettings" src="up.png" width="20" height="20">
+					</button>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingLabel">
+					<h3>Number Of Balls</h3>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingInput">
+					<button onclick="ReduceBall()">
+						<img id="imgSettings" src="down.png" width="20" height="20">
+					</button>
+					<input type="text" id="ballNum" value="50" size="2" disabled>
+					<button onclick="EnlargeBall()">
+						<img id="imgSettings" src="up.png" width="20" height="20">
+					</button>
+				</div>
+			<tr>
+			<tr>
+				<div id="settingLabel">
+					<h3>Number Of Monsters</h3>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingInput">
+					<button onclick="ReduceMonster()">
+						<img id="imgSettings" id="imgSettings" src="down.png">
+					</button>
+					<input type="text" id="monsterNum" value="1" size="2" disabled>
+					<button onclick="EnlargeMonster()">
+						<img id="imgSettings" id="imgSettings" src="up.png">
+					</button>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingLabel">
+					<h3>Game Duration(in sec)</h3>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingInput">
+					<button onclick="ReduceDuration()">
+						<img id="imgSettings" src="down.png">
+					</button>
+					<input type="text" id="gameDuration" value="60" size="2" disabled>
+					<button onclick="EnlargeDuration()">
+						<img id="imgSettings" src="up.png">
+					</button>
+				</div>
+			</tr>
+			<tr>
+				<div id="settingLabel">
+					<h3>Choose Your Own Game Buttons</Button></h3>
+				</div>
+			</tr>
+			<tr>
+				<!-- <div id="settingInput">
+						<a>Up:</a>
+						<input type="text" id="upBtnSettings" size="2" maxlength="1" >
+						<a>Down:</a>
+						<input type="text" id="downBtnSettings" size="2" maxlength="1" >
+						<a>Left:</a>
+						<input type="text" id="leftBtnSettings" size="2" maxlength="1" >
+						<a>Right:</a>
+						<input type="text" id="rightBtnSettings" size="2" maxlength="1" >
+					</div> -->
+			<tr>
+				<div id='keysDiv'>
+					<label for="keys">Set Game Direction keys:</label><br>
+					<input type="button" class="keys" id="upBtnSettings" onclick="setUpBtn()" value="ArrowUp">
+					<br>
+					<input type="button" class="keys" id="leftBtnSettings" onclick="setLeftBtn()" value="ArrowLeft">
+					<input type="button" class="keys" id="downBtnSettings" onclick="setDownBtn()" value="ArrowDown">
+					<input type="button" class="keys" id="rightBtnSettings" onclick="setRightBtn()" value="ArrowRight" />
+					<br>
+					<br>
+				</div>
+			</tr>
+
+
+
+			</tr>
+			<tr>
+				<div id="settingLabel">
+					<input type="button" value="Random Values" onclick="RandomSettings()">
+				</div>
+			</tr>
+			<tr>
+				<div id="settingLabel">
+					<input type="button" value="Start New Game" onclick="SaveSettings()">
+				</div>
+			</tr>
+		</table>
+
+
+	</div>
+	<div id="about">
+		<br>
+		<br>
+		<br>
+
+	</div>
+	<div id="game">
+		<div id="score">
+			<label for="lblScore">SCORE:</label>
+			<input id="lblScore" type="text" />
+		</div>
+		<div id="time">
+			<label for="lblTime">TIME:</label>
+			<input id="lblTime" type="text" />
+		</div>
+		<div id="gameSettings">
+			<label for="gameLevel">level:</label>
+			<input id="gameLevelS" type="text" disabled />
+			<label for="ballNum">ball Number:</label>
+			<input id="ballNumS" type="text" disabled />
+			<label for="monstersNum">Monsters Number:</label>
+			<input id="monstersNumS" type="text" disabled />
+			<label for="gameDuration">Game Duration:</label>
+			<input id="gameDurationS" type="text" disabled />
 		</div>
 
-		<div id="register">
-			<form id="registerForm" action="" method="post">
-				<label>User Name</label>
-				<input id="userName" type="text" name="userName" />
-				<br>
-				<label>Password</label>
-				<input id="password" type="password" name="pass" />
-				<br>
-				<label>First Name</label>
-				<input id="firstName" type="text" name="firstName"/>
-				<br>
-				<label>Last Name</label>
-				<input id="lastName" type="text" name="lastName" />
-				<br>
-				<label>Email</label>
-				<input  id="email" type="email" name="email"/>
-				<br>
-				<label>Birth Date</label>
-				<input id="birthDate" type="date" name="birthDate" max="1999-12-31"/>
-				<br>
-				<button class="submit" type="submit" onclick=submitHandler >Register</button>
-			  </form>
-
+		<div id="gameBoard">
+			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
-		<div id="login">
-			<br>
-			<br>
-			<br>
 
-		</div>
-		<div id="settings">
-			<br>
-			<br>
-			<br>
+	</div>
 
-		</div>
-		<div id="about">
-			<br>
-			<br>
-			<br>
+</body>
 
-		</div>
-		<div id="game">
-			<div id="score">
-				<label for="lblScore">SCORE:</label>
-				<input id="lblScore" type="text" />
-			</div>
-			<div id="time">
-				<label for="lblTime">TIME:</label>
-				<input id="lblTime" type="text" />
-			</div>
-			<div id="gameBoard">
-				<canvas id="canvas" height="600" width="600"></canvas>
-			</div>
-
-		</div>
-		
-	</body>
 </html>
 
 <script type="text/javascript">
-	
+
 	var users = []
 	var passwords = []
+	var connected_user_name;
 	users.push("k");
 	passwords.push("k");
-	function changePage(id){
-		var arr=["welcome","register","login","settings","about","game"]
-		document.getElementById(id).style.display="block";
-		for (var j = 0; j < 6; j++) {
-			if (arr[j] != id) 
-			{
-				document.getElementById(arr[j]).style.display="none";
-			}  
+
+
+	function registerButton() {
+		if ($('#registerForm').valid() && checkIfUserExists() == false) {
+			changePage("login");
+			alert("register success")
+			users.push(document.forms["registerForm"]["userName"].value);
+			connected_user_name = document.forms["registerForm"]["userName"].value;
+			passwords.push(document.forms["registerForm"]["password"].value);
+			document.getElementById('registerForm').reset();
+		}
+		if (checkIfUserExists()) {
+			alert("This user name already exists \n Please choose another user name");
 		}
 	}
 
-	$(function() {
-
-  $("form[name='registerForm']").validate({
-    // specify the validation rules
-    rules: {
-      firstName: {
-		  required: true
-		},
-	lastName: {
-			required: true
-		},
-      email: {
-        required: true,
-        email: true
-      },
-      password: {
-        required: true,
-		strongPass: true,
-        minlength: 6
-      },
-	  birthDate:{
-        required: true,
-        }
-    },
-    messages: {
-      firstName:
-	  {
-		required : "Please enter your firstname"
-	},
-      lastName: "Please enter your lastname",
-      password: {
-        required: "Please provide a password",
-		strongPass: "Please provide at least 1 character and 1 letter",
-        minlength: "Your password must be at least 5 characters long"
-      },
-      email: "Please enter a valid email address",
-	  birthDate: "Pleasr choose date of birth"
-    }
-  });
-});
-
-	function checkIfUserExists()
-	{
+	function checkIfUserExists() {
 		var newUser = document.forms["registerForm"]["userName"].value;
 		var exists = false;
-		for(i=0; i<users.length; i=i++)
-		{
-			if(users[i]==newUser)
-			{
-				exists=true;
+		for (i = 0; i < users.length; i = i++) {
+			if (users[i] == newUser) {
+				exists = true;
 				break;
 			}
-			if(exists==true)
-			{
-				alert("This userName already exist");
+			if (exists == true) {
 				return true;
 			}
 			return false;
 		}
 	}
 
-  </script>
+</script>
