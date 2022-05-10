@@ -136,30 +136,27 @@
 			</tr>
 			<tr>
 				<div id="settingLabel">
-					<h3>Choose Your Own Game Buttons</Button></h3>
+					<h3>Choose Your Own Game Buttons:</Button></h3>
 				</div>
 			</tr>
 			<tr>
-				<!-- <div id="settingInput">
-						<a>Up:</a>
-						<input type="text" id="upBtnSettings" size="2" maxlength="1" >
-						<a>Down:</a>
-						<input type="text" id="downBtnSettings" size="2" maxlength="1" >
-						<a>Left:</a>
-						<input type="text" id="leftBtnSettings" size="2" maxlength="1" >
-						<a>Right:</a>
-						<input type="text" id="rightBtnSettings" size="2" maxlength="1" >
-					</div> -->
-			<tr>
 				<div id='keysDiv'>
-					<label for="keys">Set Game Direction keys:</label><br>
-					<input type="button" class="keys" id="upBtnSettings" onclick="setUpBtn()" value="ArrowUp">
-					<br>
-					<input type="button" class="keys" id="leftBtnSettings" onclick="setLeftBtn()" value="ArrowLeft">
-					<input type="button" class="keys" id="downBtnSettings" onclick="setDownBtn()" value="ArrowDown">
-					<input type="button" class="keys" id="rightBtnSettings" onclick="setRightBtn()" value="ArrowRight" />
-					<br>
-					<br>
+					<ul id="keysSet">
+						<li>
+							<input type="button" class="gameBtn" value="⇧" name="setUpBtn" id="upBtnSettings" onclick="setUpBtn()" required>
+						</li>
+						<br>
+						<li>
+							<input type="button" class="gameBtn" value="⇦" name="setLeftBtn" id="leftBtnSettings"onclick="setLeftBtn()" required>
+						</li>								
+						<li>
+							<input type="button" class="gameBtn" value="➪" name="setRightBtn" id="rightBtnSettings" onclick="setRightBtn()" required>
+						</li>	
+						<br>
+						<li>
+							<input type="button" class="gameBtn" value="⇩" name="setDownBtn" id="downBtnSettings"onclick="setDownBtn()" required>
+						</li>
+					</ul>
 				</div>
 			</tr>
 

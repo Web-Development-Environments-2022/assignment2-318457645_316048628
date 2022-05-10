@@ -16,10 +16,14 @@ var level;
 var ballNum;
 var monstersNum;
 var duration;
-var upDefined = false;
-var downDefined = false;
-var leftDefined = false;
-var rightDefined = false;
+var upDefined;
+var downDefined;
+var leftDefined;
+var rightDefined;
+var upKeycode= 38;
+var downKeycode= 40;
+var lefKeycode= 37;
+var rightKeycode= 39;
 
 
 
@@ -350,14 +354,16 @@ function SaveSettings(){
 	ballNum = parseInt(document.getElementById('ballNum').value);
 	monstersNum = parseInt(document.getElementById('monsterNum').value);
 	duration = parseInt(document.getElementById('gameDuration').value);
-	// upButton = parseInt(document.getElementById('upBtnSettings').value);
-	// downButton =  parseInt(document.getElementById('downBtnSettings').value);
-	// leftButton =  parseInt(document.getElementById('leftBtnSettings').value);
-	// rightButton =  parseInt(document.getElementById('rightBtnSettings').value);
 	setUpBtn();
 	setDownBtn();
 	setLeftBtn();
 	setRightBtn();
+	upButton = upKeycode;
+	downButton =  downKeycode;
+	leftButton =  lefKeycode;
+	rightButton = rightKeycode;
+	
+	$(document).unbind();
 	changePage("game");
 	Start();
 }
@@ -378,7 +384,7 @@ function setUpBtn(){
 		{
 			Key = e.key;
 			document.getElementById('upBtnSettings').value = Key;
-			upButton = e.keyCode;
+			upKeycode = e.keyCode;
 			upDefined = true;
 		}
 	})
@@ -392,7 +398,7 @@ function setDownBtn(){
 		{
 			Key = e.key;
 			document.getElementById('downBtnSettings').value = Key;
-			downButton = e.keyCode;
+			downKeycode = e.keyCode;
 			downDefined = true;
 		}
 	})
@@ -405,7 +411,7 @@ function setLeftBtn(){
 		{
 			Key = e.key;
 			document.getElementById('leftBtnSettings').value = Key;
-			leftButton = e.keyCode;
+			lefKeycode = e.keyCode;
 			leftDefined = true;
 		}
 	})
@@ -418,7 +424,7 @@ function setRightBtn(){
 		{
 			Key = e.key;
 			document.getElementById('rightBtnSettings').value = Key;
-			rightButton = e.keyCode;
+			rightKeycode = e.keyCode;
 			rightDefined = true;
 		}
 	})

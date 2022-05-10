@@ -171,3 +171,35 @@ section.section
     height:25px;
     margin-left: 20px;
   }
+
+
+#keysDiv{
+    width: inherit;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-flow: row;
+}
+
+#keysSet{
+    margin: 2px auto;
+    padding-left: 0;
+    list-style: none;}
+
+li{
+  display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.gameBtn{
+
+	border-radius: 0;
+	font-size: 1em;
+  text-align: center;
+  height:50px;
+  width:50px;
+  cursor:pointer;
+  padding: 4px 5px;
+}
+
