@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
 	<script src="./jquery-3.4.1.slim.min.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
 	<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -10,7 +9,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-
 </head>
 
 <body>
@@ -157,6 +155,21 @@
 							<input type="button" class="gameBtn" value="⇩" name="setDownBtn" id="downBtnSettings"onclick="setDownBtn()" required>
 						</li>
 					</ul>
+				</div>
+				<div id="setColors">
+					<tr>
+				<label id="color">Color for 5 points:</label>
+				<input type="color" size="5" id="5color" value="#ff0000">
+					</tr>
+					<tr>
+				<label for="color">Color for 15 points:</label>
+				<input type="color" id="15color" value="#000000">
+					</tr>
+					<tr>
+				<label for="color">Color for 25 points:</label>
+				<input type="color" id="25color" value="#ffff00">
+			
+					</tr>
 				</div>
 			</tr>
 
