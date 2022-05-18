@@ -35,6 +35,7 @@ $(document).ready(function() {
         return this.optional(element) || /^[a-z]+$/i.test(value);
       }, "");
 
+
 	$("#registerForm").validate({
 		// specify the validation rules
 		rules: {
