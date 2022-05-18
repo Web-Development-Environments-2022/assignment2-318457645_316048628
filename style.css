@@ -99,6 +99,11 @@ section.section
     color: red;
   }
   
+  #lifeStatus img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
   input, textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
