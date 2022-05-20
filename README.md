@@ -7,6 +7,7 @@ ID and Names:
 
 
 Link to our game: https://web-development-environments-2022.github.io/assignment2-318457645_316048628/
+
 Welcome to our "Miss Pacman" Game!
 
 You can login to the game with the user name:"k" and the password:"k", and you can register in the "register" tab.
