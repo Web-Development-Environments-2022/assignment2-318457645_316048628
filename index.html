@@ -9,230 +9,265 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
 </head>
 
 <body>
-
+	<div id="header">
+		<header>
+			<img id="logo1" src="Images/msPacmanLogo.png">
+		</header>
+	</div>
 	<div id="menu">
 		<ul class="menu-list">
-			<i><img class="menu-icon" src="icon.png" alt=""></i>
-			<li class="menu-list-item"><a href="#" onclick="changePage('welcome')"> Welcome </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('register')"> Register </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('login')"> Login </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('settings')"> Settings </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('about')"> About </a></li>
-			<li class="menu-list-item"><a href="#" onclick="changePage('game')"> Game </a></li>
+			<li class="menu-list-item"><a href="#" data-hover="Welcome" onclick="changePage('welcome')"> Welcome </a>
+			</li>
+			<li class="menu-list-item"><a href="#" data-hover="Register" onclick="changePage('register')"> Register </a>
+			</li>
+			<li class="menu-list-item"><a href="#" data-hover="Login" onclick="changePage('login')"> Login </a></li>
+			<li class="menu-list-item"><a href="#" data-hover="About" onclick="changePage('about')"> About </a></li>
 		</ul>
 	</div>
+	<div id="content">
+		<div id="welcome" style="vertical-align:middle">
+			<img id="registerButton" src="Images/register.png" onclick="changePage('register')"
+				style="height:75px;  border: 5px solid rgb(0, 0, 0);">
+			<img id="loginButton" src="Images/login.png" onclick="changePage('login')"
+				style="height:75px;   border: 5px solid rgb(0, 0, 0);				">
 
-	<div id="welcome">
-		<br>
-		<br>
+		</div>
+		<div id="register">
+			<form id="registerForm" method="post">
+				<label>User Name</label>
+				<input type="text" name="userName" />
+				<br>
+				<label>Password</label>
+				<input type="password" name="password" />
+				<br>
+				<label>Full Name</label>
+				<input type="text" name="fullName" />
+				<br>
+				<label>Email</label>
+				<input type="email" name="email" />
+				<br>
+				<label>Birth Date</label>
+				<input type="date" name="birthDate" max="1999-12-31" />
+				<br>
+				<button class="button" type="button" onclick="registerButton()">Register</button>
+			</form>
+		</div>
+		<div id="login">
+			<form id="LoginForm" enctype="text/plain">
+				<label>User Name</label>
+				<input id="usernameLogin" type="text" name="usernameLogin" />
+				<br>
+				<label>Password</label>
+				<input id="passLogin" type="password" name="passLogin" />
+				<br>
+				<button class="button" type="button" onclick="loginButton()">Sign In</button>
+			</form>
 
-
-
-
-	</div>
-
-	<div id="register">
-		<form id="registerForm" action="" method="post">
-			<label>User Name</label>
-			<input type="text" name="userName" />
-			<br>
-			<label>Password</label>
-			<input type="password" name="password" />
-			<br>
-			<label>Full Name</label>
-			<input type="text" name="fullName" />
-			<br>
-			<label>Email</label>
-			<input type="email" name="email" />
-			<br>
-			<label>Birth Date</label>
-			<input type="date" name="birthDate" max="1999-12-31" />
-			<br>
-			<button class="submit" type="submit" onclick="registerButton()">Register</button>
-		</form>
-
-	</div>
-	<div id="login">
-		<form id="LoginForm" enctype="text/plain">
-			<label>User Name</label>
-			<input type="text" name="userName" />
-			<br>
-			<label>Password</label>
-			<input type="password" name="password" />
-			<br>
-			<button type="button">Sign In</button>
-		</form>
-
-	</div>
-	<div id="settings">
-		<table>
-			<tr>
-				<div id="settingLabel">
-					<h3>Game Level</h3>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingInput">
-					<button onclick="ReduceGameLevel()">
-						<img id="imgSettings" src="down.png" width="20" height="20">
-					</button>
-					<input type="text" id="gameLevel" value="1" size="2" disabled>
-					<button onclick="EnlargeGameLevel()">
-						<img id="imgSettings" src="up.png" width="20" height="20">
-					</button>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingLabel">
-					<h3>Number Of Balls</h3>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingInput">
-					<button onclick="ReduceBall()">
-						<img id="imgSettings" src="down.png" width="20" height="20">
-					</button>
-					<input type="text" id="ballNum" value="50" size="2" disabled>
-					<button onclick="EnlargeBall()">
-						<img id="imgSettings" src="up.png" width="20" height="20">
-					</button>
-				</div>
-			<tr>
-			<tr>
-				<div id="settingLabel">
-					<h3>Number Of Monsters</h3>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingInput">
-					<button onclick="ReduceMonster()">
-						<img id="imgSettings" id="imgSettings" src="down.png">
-					</button>
-					<input type="text" id="monsterNum" value="1" size="2" disabled>
-					<button onclick="EnlargeMonster()">
-						<img id="imgSettings" id="imgSettings" src="up.png">
-					</button>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingLabel">
-					<h3>Game Duration(in sec)</h3>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingInput">
-					<button onclick="ReduceDuration()">
-						<img id="imgSettings" src="down.png">
-					</button>
-					<input type="text" id="gameDuration" value="60" size="2" disabled>
-					<button onclick="EnlargeDuration()">
-						<img id="imgSettings" src="up.png">
-					</button>
-				</div>
-			</tr>
-			<tr>
-				<div id="settingLabel">
-					<h3>Choose Your Own Game Buttons:</Button></h3>
-				</div>
-			</tr>
-			<tr>
-				<div id='keysDiv'>
-					<ul id="keysSet">
-						<li>
-							<input type="button" class="gameBtn" value="⇧" name="setUpBtn" id="upBtnSettings" onclick="setUpBtn()" required>
-						</li>
-						<br>
-						<li>
-							<input type="button" class="gameBtn" value="⇦" name="setLeftBtn" id="leftBtnSettings"onclick="setLeftBtn()" required>
-						</li>								
-						<li>
-							<input type="button" class="gameBtn" value="➪" name="setRightBtn" id="rightBtnSettings" onclick="setRightBtn()" required>
-						</li>	
-						<br>
-						<li>
-							<input type="button" class="gameBtn" value="⇩" name="setDownBtn" id="downBtnSettings"onclick="setDownBtn()" required>
-						</li>
-					</ul>
-				</div>
-				<div id="setColors">
-					<tr>
-				<label id="color">Color for 5 points:</label>
-				<input type="color" size="5" id="5color" value="#ff0000">
-					</tr>
-					<tr>
-				<label for="color">Color for 15 points:</label>
-				<input type="color" id="15color" value="#000000">
-					</tr>
-					<tr>
-				<label for="color">Color for 25 points:</label>
-				<input type="color" id="25color" value="#ffff00">
-			
-					</tr>
-				</div>
-			</tr>
-
-
-
-			</tr>
-			<tr>
-				<div id="settingLabel">
-					<input type="button" value="Random Values" onclick="RandomSettings()">
-				</div>
-			</tr>
-			<tr>
-				<div id="settingLabel">
-					<input type="button" value="Start New Game" onclick="SaveSettings()">
-				</div>
-			</tr>
+		</div>
+		<div id="settings">
+			<table>
+				<tr>
+					<div id="settingLabel1" class="settingLabel">
+						<h3>Number Of Balls</h3>
+					</div>
+				</tr>
+				<tr>
+					<div id="settingInput1" class="settingInput">
+						<button onclick="ReduceBall()">
+							<img id="imgSettings" src="images/down.png" width="20" height="20">
+						</button>
+						<input type="text" id="ballNum" value="80" size="2" disabled>
+						<button onclick="EnlargeBall()">
+							<img id="imgSettings" src="images/up.png" width="20" height="20">
+						</button>
+					</div>
+				<tr>
+				<tr>
+					<div id="settingLabel2" class="settingLabel">
+						<h3>Number Of Monsters</h3>
+					</div>
+				</tr>
+				<tr>
+					<div id="settingInput2" class="settingInput">
+						<button onclick="ReduceMonster()">
+							<img id="imgSettings" id="imgSettings" src="images/down.png">
+						</button>
+						<input type="text" id="monsterNum" value="1" size="2" disabled>
+						<button onclick="EnlargeMonster()">
+							<img id="imgSettings" id="imgSettings" src="images/up.png">
+						</button>
+					</div>
+				</tr>
+				<tr>
+					<div id="settingLabel3" class="settingLabel">
+						<h3>Game Duration(in sec)</h3>
+					</div>
+				</tr>
+				<tr>
+					<div id="settingInput3" class="settingInput">
+						<button onclick="ReduceDuration()">
+							<img id="imgSettings" src="images/down.png">
+						</button>
+						<input type="text" id="gameDuration" value="60" size="2" disabled>
+						<button onclick="EnlargeDuration()">
+							<img id="imgSettings" src="images/up.png">
+						</button>
+					</div>
+				</tr>
+				<tr>
+					<div id="settingLabel4" class="settingLabel">
+						<h3>Choose Your Own Game Buttons:</Button></h3>
+					</div>
+				</tr>
+				<tr>
+					<div id='keysDiv'>
+						<ul id="keysSet">
+							<li>
+								<label>Up:</label>
+								<input type="button" class="gameBtn" value="⇧" name="setUpBtn" id="upBtnSettings"
+									onclick="setUpBtn()" required>
+							</li>
+							<li>
+								<label>Left:</label>
+								<input type="button" class="gameBtn" value="⇦" name="setLeftBtn" id="leftBtnSettings"
+									onclick="setLeftBtn()" required>
+							</li>
+							<li>
+								<label>Right:</label>
+								<input type="button" class="gameBtn" value="➪" name="setRightBtn" id="rightBtnSettings"
+									onclick="setRightBtn()" required>
+							</li>
+							<li>
+								<label>Down:</label>
+								<input type="button" class="gameBtn" value="⇩" name="setDownBtn" id="downBtnSettings"
+									onclick="setDownBtn()" required>
+							</li>
+						</ul>
+					</div>
+					<div id="setColors">
+				<tr>
+					<label id="color">Color for 5 points:</label>
+					<input type="color" size="5" id="5color" value="#b80050">
+				</tr>
+				<tr>
+					<label for="color">Color for 15 points:</label>
+					<input type="color" id="15color" value="#e85ab2">
+				</tr>
+				<tr>
+					<label for="color">Color for 25 points:</label>
+					<input type="color" id="25color" value="#ffa3cb">
+				</tr>
+		</div>
+		</tr>
+		</tr>
+		<tr>
+			<div id="randomSettingLabel" class="settingLabel">
+				<input class="button" type="button" value="Random Values" onclick="RandomSettings()">
+			</div>
+		</tr>
+		<tr>
+			<div id="startSettingLabel" class="settingLabel">
+				<input class="button" type="button" value="Start New Game" onclick="SaveSettings()">
+			</div>
+		</tr>
 		</table>
 
 
 	</div>
-
 	<div id="about" class="modal">
 		<div class="dialogContent">
-		  <div class="dialogTitle">
-			<span class="closeDialog" onclick="CloseAboutDialog()">&times;</span>
-			<h3>About</h3>
-		  </div>
-		  <div class="dialogBody">
-			<li> <u> Inventors </u> </li>
-			<ul> Navit & Tamar</ul>
+			<div class="dialogTitle">
+				<span class="closeDialog" onclick="CloseDialog('about')">&times;</span>
+				<h1>About Us</h1>
+			</div>
+			<div class="dialogBody">
+				<h3> Navit Branin & Tamar Tzuberi</h3>
+				<ul>We used jquery.validate.min.js and jquery.min.js 3.4.0</ul>
+				<img id="navitamarImg" src="images/NavitAndTamar.jpg">
+			</div>
+		</div>
+	</div>
+
+	<div id="gameOver" class="modal" style="display:none"> 
+		<div class="dialogContent">
+			<div class="dialogTitle">
+				<span class="closeDialog" onclick="CloseDialog('gameOver')">&times;</span>
+				<h3>Game Over!</h3>
+				<h1 id="resultGame" >lala</h1>
+				<h1 id="gameScore"></h1>
+				<button class="button" onclick="startNewGame()">Start New Game</button>
+				
+			</div>
+		</div>
+	</div>
+	<center>
+		<div id="yay" class="modal" style="display:none">
+			<div class="dialogContentYay">
+				<div class="dialogTitle">
+					<img id="yayImage" src='images/pill.gif'>
+				</div>
+			</div>
+		</div>
+	</center>
+	<div id="game">
+		<div>
+			<row>
+				<div id="username_lbl ">
+					<label id="lblname" style="font-size: 20px;"></label>
+				</div>
+				<div id="score">
+					<label for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
+				</div>
+				<div id="time">
+					<label for="lblTime">TIME LEFT:</label>
+					<input id="lblTime" type="text" />
+				</div>
+				<div id="lifeStatus">
+					<img id="life1" src="images/life1.png" alt="" />
+					<img id="life2" src="images/life1.png" alt="" />
+					<img id="life3" src="images/life1.png" alt="" />
+					<img id="life4" src="images/life1.png" alt="" />
+					<img id="life5" src="images/life1.png" alt="" />
+
+				</div>
+			</row>
+		</div>
+		<div id="game-container">
+			<row>
+				<div id="gameSettings" style="width:15%;float: left;">
+					<label for="ballNum">ball Number:</label>
+					<input id="ballNumS" type="text" disabled />
+					<label for="monstersNum">Monsters Number:</label>
+					<input id="monstersNumS" type="text" disabled />
+					<label for="gameDuration">Game Duration:</label>
+					<input id="gameDurationS" type="text" disabled />
+					<label id="color">Color for 5 points:</label>
+					<input type="color" id="5color-show" disabled>
+					<label for="color">Color for 15 points:</label>
+					<input type="color" id="15color-show" disabled>
+					<label for="color">Color for 25 points:</label>
+					<input type="color" id="25color-show" disabled>
+				</div>
+				<div id="gameBoard" style="width:85%;float: left;">
+					<canvas id="canvas" height="700" width="1000"></canvas>
+				</div>
+			</row>
+
 
 		</div>
 
 
 	</div>
-	<div id="game">
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="gameSettings">
-			<label for="gameLevel">level:</label>
-			<input id="gameLevelS" type="text" disabled />
-			<label for="ballNum">ball Number:</label>
-			<input id="ballNumS" type="text" disabled />
-			<label for="monstersNum">Monsters Number:</label>
-			<input id="monstersNumS" type="text" disabled />
-			<label for="gameDuration">Game Duration:</label>
-			<input id="gameDurationS" type="text" disabled />
-		</div>
-
-		<div id="gameBoard">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-
+	<div id="footer">
+		<footer>
+			Connect us at Navit&TamarPacman@gmail.com
+		</footer>
 	</div>
 
 </body>
@@ -250,12 +285,12 @@
 
 	function registerButton() {
 		if ($('#registerForm').valid() && checkIfUserExists() == false) {
-			changePage("login");
 			alert("register success")
 			users.push(document.forms["registerForm"]["userName"].value);
-			connected_user_name = document.forms["registerForm"]["userName"].value;
+			// connected_user_name = document.forms["registerForm"]["userName"].value;
 			passwords.push(document.forms["registerForm"]["password"].value);
 			document.getElementById('registerForm').reset();
+			changePage("login");
 		}
 		if (checkIfUserExists()) {
 			alert("This user name already exists \n Please choose another user name");
@@ -277,15 +312,51 @@
 		}
 	}
 
+	function loginButton() {
+
+		var username = document.forms["LoginForm"]["usernameLogin"].value;
+		var pass = document.forms["LoginForm"]["passLogin"].value;
+		var check = false;
+		for (i = 0; i < users.length; i++) {
+			if (users[i] == username && passwords[i] == pass) {
+				check = true;
+				updateUserName(username);
+				break;
+			}
+		}
+		if (check == false) {
+			alert("UserName or password are incorrect! \n Try again");
+			event.preventDefault();
+		}
+		else {
+			changePage('settings');
+			document.getElementById('LoginForm').reset();
+		}
+	}
 	window.onclick = function (event) {
-      var x = document.getElementById('about');
-      if (event.target == x)
-        x.style.display = 'none';
+		var x = document.getElementById('about');
+		if (event.target == x)
+			x.style.display = 'none';
+	}
+	window.addEventListener('keydown', function (event) {
+		if (event.key === 'Escape') {
+			document.getElementById('about').style.display = 'none';
+		}
+	})
+	window.addEventListener('keydown', function (event) {
+		if (event.key === 'Escape') {
+			document.getElementById('gameOver').style.display = 'none';
+		}
+	})
+	function CloseDialog(dialogName) {
+		document.getElementById(dialogName).style.display = "none";
+	}
+	window.addEventListener("keydown", function (e) {
+		if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+			e.preventDefault();
+		}
+	}, false);
 
-    }
 
-	function CloseAboutDialog() {
-	  document.getElementById("about").style.display="none";
-    }
 
 </script>
