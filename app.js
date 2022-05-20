@@ -476,37 +476,37 @@ function Draw(x) {
 			}
 			else if (board[i][j] == 4) { //draw obstacle
 				img1 = new Image();
-				img1.src = 'images/brick.png';
+				img1.src = 'Images/brick.png';
 				context.drawImage(img1, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 6) // draw monster
 			{
 				img2 = new Image();
-				img2.src = 'images/ghost.png';
+				img2.src = 'Images/ghost.png';
 				context.drawImage(img2, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 7) // draw monster
 			{
 				img3 = new Image();
-				img3.src = 'images/ghost1.png';
+				img3.src = 'Images/ghost1.png';
 				context.drawImage(img3, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 8) // draw monster
 			{
 				img4 = new Image();
-				img4.src = 'images/ghost.png';
+				img4.src = 'Images/ghost.png';
 				context.drawImage(img4, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 9) // draw monster
 			{
 				img5 = new Image();
-				img5.src = 'images/ghost1.png';
+				img5.src = 'Images/ghost1.png';
 				context.drawImage(img5, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 3) // draw movingScore
 			{
 				img6 = new Image();
-				img6.src = 'images/plus50.gif';
+				img6.src = 'Images/plus50.gif';
 				context.drawImage(img6, center.x - 23, center.y - 23, 46, 46);
 			}
 			else if (board[i][j] == 15) // draw 15point
@@ -668,7 +668,7 @@ function UpdatePosition() {
 		}
 		else {
 			var elem = document.createElement("img");
-			elem.src = 'images/life1.png';
+			elem.src = 'Images/life1.png';
 			elem.id = "life" + life;
 			elem.style.marginRight = "4px";
 			document.getElementById("lifeStatus").appendChild(elem);
